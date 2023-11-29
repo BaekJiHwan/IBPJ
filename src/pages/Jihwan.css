@@ -1,0 +1,396 @@
+@font-face {
+    font-family: "Montez-Regular";
+    font-weight: normal;
+    src: url(../fonts/Montez/Montez-Regular.ttf);
+}
+.Main {
+    background: black;
+    width: 100%;
+    display: flex;
+    color: white;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.information {
+    margin-left: 100px;
+}
+
+.profile-image {
+    position: relative;
+    float: left;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.image {
+    width: 10cm;
+    height: 10cm;
+    border-radius: 300px;
+}
+
+.Sign {
+    color: #000000;
+    font-family: "Montez-Regular";
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 96px;
+    position: absolute;
+    margin-top: 420px;
+    margin-left: 150px;
+
+}
+
+.inforView {
+    flex-direction: row;
+    display: flex;
+}
+
+.nameText {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 50px;
+    left: 190px;
+}
+
+.EngName {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 14px;
+    left: 190px;
+}
+
+.birthday {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 190px;
+    color: #767676;
+}
+
+.phoneNum {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 14px;
+    left: 190px;
+    color: #767676;
+}
+
+.mailAddress {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 14px;
+    left: 190px;
+    color: #767676;
+}
+
+.Education {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 80px;
+    left: 190px;
+}
+
+.date {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 700px;
+    color: #767676;
+}
+
+.contents {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 300px;
+    color: #111;
+}
+
+.date1 {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 700px;
+    color: #767676;
+}
+
+.contents1 {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 300px;
+    color: #111;
+}
+
+.date2 {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 700px;
+    color: #767676;
+}
+
+.contents2 {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 300px;
+    color: #111;
+}
+
+.TMI {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 80px;
+    left: 190px;
+}
+
+.TMI-Contents {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 190px;
+    color: #111;
+}
+
+.leftInfo {
+    background-color: white;
+}
+
+.rightInfo {
+    margin-left: 360px;
+}
+
+.Activites {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 50px;
+    left: 90px;
+}
+
+.date3 {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 1230px;
+    color: #767676;
+}
+
+.contents3 {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 160px;
+    color: #111;
+}
+
+.Project {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 80px;
+    left: 90px;
+}
+
+.date4 {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 1230px;
+    color: #767676;
+}
+
+.date5 {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 1230px;
+    color: #767676;
+}
+
+.date6 {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 1230px;
+    color: #767676;
+}
+
+.contents4 {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    left: 220px;
+    color: #111;
+}
+
+.contents5 {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 220px;
+    color: #111;
+}
+
+.contents6 {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    left: 220px;
+    color: #111;
+}
+
+.Skills {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 80px;
+    left: 90px;
+}
+
+.sk-1 {
+    color: #767676;
+    font-size: 20px;
+    font-weight: 500;
+    left: 1233px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 655px;
+}
+
+.sk-2 {
+    color: #767676;
+    font-size: 20px;
+    font-weight: 500;
+    left: 1233px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 695px;
+}
+
+.sk-3 {
+    color: #767676;
+    font-size: 20px;
+    font-weight: 500;
+    left: 1233px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 735px;
+
+}
+
+.sk-4 {
+    color: #767676;
+    font-size: 20px;
+    font-weight: 500;
+    left: 1233px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 775px;
+}
+
+.overlap-group {
+    background-color: #d9d9d9;
+    height: 15px;
+    left: 1372px;
+    position: absolute;
+    top: 660px;
+    width: 250px;
+}
+
+.rectangle {
+    background-color: #111111;
+    height: 15px;
+    width: 174px;
+}
+
+.overlap-group2 {
+    background-color: #d9d9d9;
+    height: 15px;
+    left: 1372px;
+    position: absolute;
+    top: 700px;
+    width: 250px;
+}
+
+.rectangle-2 {
+    background-color: #111111;
+    height: 15px;
+    width: 192px;
+}
+
+.overlap-group3 {
+    background-color: #d9d9d9;
+    height: 15px;
+    left: 1372px;
+    position: absolute;
+    top: 740px;
+    width: 250px;
+}
+
+.rectangle-3 {
+    background-color: #111111;
+    height: 15px;
+    width: 99px;
+}
+
+.overlap-group4 {
+    background-color: #d9d9d9;
+    height: 15px;
+    left: 1372px;
+    position: absolute;
+    top: 780px;
+    width: 250px;
+}
+
+.rectangle-4 {
+    background-color: #111111;
+    height: 15px;
+    width: 107px;
+}
+
+.mbti {
+    position: absolute;
+    margin-top: 600px;
+    margin-left: 50px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.mbtiInfo {
+    position: absolute;
+    margin-top: 680px;
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #767676;
+}

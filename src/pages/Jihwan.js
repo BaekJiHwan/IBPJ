@@ -1,7 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import '../pages/Jihwan.css'
 
 const Jihwan = () => {
+
+    const [inputs, setInputs] = useState({
+        comment: "",
+    });
+
+    const { comment } = inputs;
+    const [comments, setComments] = useState([]); // 사용자의 댓글들을 저장할 상태
+
+    const onChange = (e) => {
+        setInputs({ ...inputs, [e.target.id]: e.target.value });
+    };
+
+    const onSubmit = () => {
+        setComments([...comments, comment]); // 새 댓글 추가
+        setInputs({ comment: "" }); // 입력 필드 초기화
+    };
+
     return (
         <div>
             <div className="information">
@@ -32,7 +49,8 @@ const Jihwan = () => {
                         <div className="contents2">선문대학교 컴퓨터공학부 졸업 예정</div>
 
                         <div className="TMI">TMI</div>
-                        <div className="TMI-Contents">최애 유튜버: 우정잉</div>
+                        <div className="TMI-Contents">최애 유튜버</div>
+                        <div className="TMI-Name">우정잉</div>
                     </div>
 
 
@@ -71,8 +89,22 @@ const Jihwan = () => {
                     </div>
 
                 </div>
+
             </div>
-            
+            <div className="commentsContainer">
+                <div className="commentSection">
+                    <label className="commentName">댓글</label>
+                    <input type="text" id="comment" value={comment} onChange={onChange} />
+                    <button type="button" onClick={onSubmit}>작성</button>
+                </div>
+                <div className="commentsDisplay">
+                    {comments.map((c, index) => (
+                        <div key={index}> {c}</div>
+                    ))}
+                </div>
+            </div>
+
+
         </div>
     )
 }

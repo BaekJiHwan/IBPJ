@@ -15,6 +15,7 @@ const Jihwan = () => {
     };
 
     const onSubmit = () => {
+        
         setComments([...comments, comment]); // 새 댓글 추가
         setInputs({ comment: "" }); // 입력 필드 초기화
     };

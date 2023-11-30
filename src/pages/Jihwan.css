@@ -184,6 +184,7 @@
 
 .rightInfo {
     margin-left: 360px;
+    position: relative;
 }
 
 .Activites {
@@ -199,7 +200,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-top: 40px;
-    left: 1280px;
+    left: 90px;
     color: #767676;
 }
 
@@ -225,7 +226,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-top: 40px;
-    left: 1280px;
+    left: 90px;
     color: #767676;
 }
 
@@ -234,7 +235,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-top: 20px;
-    left: 1280px;
+    left: 90px;
     color: #767676;
 }
 
@@ -243,7 +244,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-top: 20px;
-    left: 1280px;
+    left: 90px;
     color: #767676;
 }
 
@@ -286,33 +287,33 @@
     color: #767676;
     font-size: 20px;
     font-weight: 500;
-    left: 1283px;
+    left: 93px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 655px;
+    top: 585px;
 }
 
 .sk-2 {
     color: #767676;
     font-size: 20px;
     font-weight: 500;
-    left: 1283px;
+    left: 93px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 695px;
+    top: 625px;
 }
 
 .sk-3 {
     color: #767676;
     font-size: 20px;
     font-weight: 500;
-    left: 1283px;
+    left: 93px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 735px;
+    top: 665px;
 
 }
 
@@ -320,19 +321,19 @@
     color: #767676;
     font-size: 20px;
     font-weight: 500;
-    left: 1283px;
+    left: 93px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 775px;
+    top: 705px;
 }
 
 .overlap-group {
     background-color: #d9d9d9;
     height: 15px;
-    left: 1422px;
+    left: 223px;
     position: absolute;
-    top: 660px;
+    top: 590px;
     width: 250px;
 }
 
@@ -345,9 +346,9 @@
 .overlap-group2 {
     background-color: #d9d9d9;
     height: 15px;
-    left: 1422px;
+    left: 223px;
     position: absolute;
-    top: 700px;
+    top: 630px;
     width: 250px;
 }
 
@@ -360,9 +361,9 @@
 .overlap-group3 {
     background-color: #d9d9d9;
     height: 15px;
-    left: 1422px;
+    left: 223px;
     position: absolute;
-    top: 740px;
+    top: 680px;
     width: 250px;
 }
 
@@ -375,9 +376,9 @@
 .overlap-group4 {
     background-color: #d9d9d9;
     height: 15px;
-    left: 1422px;
+    left: 223px;
     position: absolute;
-    top: 780px;
+    top: 730px;
     width: 250px;
 }
 
@@ -409,6 +410,7 @@
     padding: 20px;
     margin-top: 100px;
     height: 500px;
+    justify-content: center;
     /* 추가적인 스타일링이 필요할 수 있음 */
 }
 

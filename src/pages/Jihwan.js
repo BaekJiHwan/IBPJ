@@ -73,6 +73,7 @@ const Jihwan = () => {
                         <div className="sk-2">Figma</div>
                         <div className="sk-3">HTML</div>
                         <div className="sk-4">CSS</div>
+
                         <div className="overlap-group">
                             <div className="rectangle" />
                         </div>
@@ -85,10 +86,8 @@ const Jihwan = () => {
                         <div className="overlap-group4">
                             <div className="rectangle-4" />
                         </div>
-
-
+                        
                     </div>
-
                 </div>
 
             </div>
@@ -100,7 +99,7 @@ const Jihwan = () => {
                 </div>
                 <div className="commentsDisplay">
                     {comments.map((c, index) => (
-                        <div key={index}> {c}</div>
+                        <div key={index}> 익명 : {c}</div>
                     ))}
                 </div>
             </div>

@@ -363,7 +363,7 @@
     height: 15px;
     left: 223px;
     position: absolute;
-    top: 680px;
+    top: 670px;
     width: 250px;
 }
 
@@ -378,7 +378,7 @@
     height: 15px;
     left: 223px;
     position: absolute;
-    top: 730px;
+    top: 710px;
     width: 250px;
 }
 
@@ -411,6 +411,7 @@
     margin-top: 100px;
     height: 500px;
     justify-content: center;
+    position: relative;
     /* 추가적인 스타일링이 필요할 수 있음 */
 }
 
@@ -418,6 +419,7 @@
     display: flex;
     align-items: center; 
     justify-content: center;
+    margin-top: 30px;
 }
 
 .commentName {
@@ -428,12 +430,12 @@
 
 #comment {
     margin-left: 30px;
-    width: 76%; /* 너비 조정 */
+    width: 30%; /* 너비 조정 */
     height: 40px; /* 높이 조정 */
     border-radius: 20px; /* 둥근 모서리 */
     border: 2px solid #cccccc; /* 테두리 스타일 */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    font-size: 16px; /* 글자 크기 */
+    font-size: 20px; /* 글자 크기 */
     padding: 5px 15px; /* 내부 여백 */
     outline: none; /* 포커스시 테두리 제거 */
 }
@@ -460,4 +462,34 @@
 
 .commentsDisplay {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* 댓글들을 세로로 배치 */
+    width: 88%;
+    margin-left: 100px;
+    position: absolute;
+    align-items: flex-start;
+    left: 23.5%;
 }
+
+.commentsDisplay > div {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    font-size: 20px;
+    color: #111;
+    font-weight: 500;
+    align-items: center;
+}
+
+.commentsDisplay > div::before {
+    content: "👤"; /* 아이콘 문자나 이미지 경로 설정 */
+    font-size: 30px;
+    margin-right: 30px; /* 아이콘과 텍스트 사이 간격 설정 */
+}
+
+.commentText {
+    flex: 1; /* 텍스트 요소가 남은 공간을 채우도록 설정 */
+}
+

@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom"
 
-import Jihwan from "./pages/Jihwan"
+import Jihwan from "./pages/Jihwan";
+import JunChul from './pages/JunChul';
 import About from "./pages/About";
 import Counter from "./pages/Counter";
 import Input from "./pages/Input";
@@ -14,6 +15,7 @@ function App() {
       <div className="Main">
         <nav>
           <Link to="/" style={{ color: 'white', marginRight: '100px', marginLeft: '100px' }}>Jihwan</Link>
+          <Link to="/JunChul" style={{ color: 'white', marginRight: '100px' }}>JunChul</Link>
           <Link to="/about" style={{ color: 'white', marginRight: '100px' }}>About</Link> 
           <Link to="/counter" style={{ color: 'white', marginRight: '100px' }}>Counter</Link> 
           <Link to="/input" style={{ color: 'white', marginRight: '100px' }}>Input</Link> 
@@ -24,6 +26,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Jihwan />} />
+        <Route path="/JunChul" element={<JunChul />} />
         <Route path="/about" element={<About />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/input" element={<Input />} />

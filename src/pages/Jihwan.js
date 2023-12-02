@@ -1,5 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import '../CSS/Profile.css'
+import axios from 'axios';
+
 
 const Jihwan = () => {
 
@@ -14,17 +16,37 @@ const Jihwan = () => {
         setInputs({ ...inputs, [e.target.id]: e.target.value });
     };
 
-    const onSubmit = () => {
-        
-        setComments([...comments, comment]); // 새 댓글 추가
-        setInputs({ comment: "" }); // 입력 필드 초기화
+    const onSubmit = async () => {
+        try {
+            await axios.post('API_ENDPOINT', { comment });
+            setComments([...comments, comment]); // 새 댓글 추가
+            setInputs({ comment: "" }); // 입력 필드 초기화
+            fetchComments(); // 댓글 다시 불러오기
+        } catch (error) {
+            console.error(error);
+        }
     };
+    
+    const fetchComments = async () => {
+        try {
+            const response = await axios.get('API_ENDPOINT');
+            setComments(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+    // 컴포넌트 마운트 시 댓글 불러오기
+    useEffect(() => {
+        fetchComments();
+    }, []);
+    
 
     return (
         <div>
             <div className="information">
                 <div className="profile-image">
-                    <img className="image" src="image/test.jpeg" />
+                    <img className="image" src="image/test.jpeg" alt="Profile"/>
                 </div>
                 <div className="Sign">Hodo</div>
                 <div className="mbti">제 MBTI는</div>

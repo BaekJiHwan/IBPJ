@@ -1,7 +1,15 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import '../CSS/Profile.css'
+import axios from 'axios';
+import { fetchLang } from "../components/GitHubREST";
+import ApexCharts from 'react-apexcharts';
 
 const JunChul = () => {
+    const [gitResult, setGitResult] = useState(null)
+    const [data, setData] = useState({
+        labels: [],
+        datasets: [{ data: [] }],
+    });
 
     const [inputs, setInputs] = useState({
         comment: "",
@@ -14,11 +22,92 @@ const JunChul = () => {
         setInputs({ ...inputs, [e.target.id]: e.target.value });
     };
 
-    const onSubmit = () => {
-        
-        setComments([...comments, comment]); // 새 댓글 추가
+    const onSubmit = async () => {
+        setComments(prevComments => [...prevComments, { content: comment }]);
         setInputs({ comment: "" }); // 입력 필드 초기화
+        try {
+            await axios.post(`${process.env.REACT_APP_Endpoint}/pushComment`, { comment: comment, postID: 2 });
+        } catch (error) {
+            console.error(error);
+        }
     };
+
+    const fetchComments = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_Endpoint}/pullComment?postID=2`);
+            setComments(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    // 컴포넌트 마운트 시 댓글 불러오기
+    useEffect(() => {
+        const fetchGit = async () => {
+            const response = await fetchLang('CookiePawn')
+            setGitResult(response.repoName)
+            if (response) {
+                // 객체의 키와 값을 분리하여 두 개의 배열로 만듦
+                const labels = Object.keys(response.repoLang);
+                const data = Object.values(response.repoLang);
+
+                // 데이터를 내림차순으로 정렬하고, 레이블도 동일한 순서로 정렬
+                const sortedIndices = data
+                    .map((value, index) => ({ value, index }))
+                    .sort((a, b) => b.value - a.value)
+                    .map(data => data.index);
+
+                const sortedLabels = sortedIndices.map(index => labels[index]);
+                const sortedData = sortedIndices.map(index => data[index]);
+
+                // 차트 데이터 상태 업데이트
+                setData({
+                    labels: sortedLabels,
+                    datasets: [
+                        {
+                            data: sortedData
+                        }
+                    ]
+                });
+            }
+        }
+        fetchGit();
+        fetchComments();
+    }, []);
+
+
+
+    var options = {
+        series: [{
+            data: data.datasets[0].data
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: {
+                show: false, // 툴바 숨기기
+            }
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true,
+            }
+        },
+        colors: ['black'], // 여기에 원하는 색상 코드를 배열 형태로 추가하세요.
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: data.labels,
+            labels: {
+                show: false,
+            },
+        }
+    };
+
+
+
 
     return (
         <div>
@@ -29,7 +118,7 @@ const JunChul = () => {
                 <div className="Sign">AJC</div>
                 <div className="mbti">제 MBTI는</div>
                 <div className="mbtiInfo">
-                    INFP 였는데요. 누구때문에 
+                    INFP 였는데요. 누구때문에
                     <br />
                     S 100%, T 100%로 바뀌었어요 ^^
                 </div>
@@ -61,33 +150,24 @@ const JunChul = () => {
                         <div className="contents3">컴퓨터공학부 학생회</div>
 
                         <div className="Project">PROJECT</div>
-                        <div className="date4">2학년 1학기</div>
-                        <div className="contents4">기초 프로젝트 1 환자 관리 프로그램 제작</div>
-                        <div className="date5">2학년 2학기</div>
-                        <div className="contents5">기초 프로젝트 2 키오스크 제작</div>
-                        <div className="date6">3학년 1학기</div>
-                        <div className="contents6">오픈SW 프로젝트 CNFT-WITH 제작</div>
-                        
+                        {gitResult && gitResult.map((item, idx) => {
+                            return (
+                                <>
+                                    <div className="date4">{item}</div>
+                                    <div className="contents4">
+                                        <a href={`https://github.com/cookiepawn/${item}`} target="_blank" rel="noopener noreferrer">
+                                            https://github.com/cookiepawn/{item}
+                                        </a>
+                                    </div>
+                                </>
+                            )
+                        })}
 
                         <div className="Skills">SKILLS</div>
-                        <div className="sk-1">HTML</div>
-                        <div className="sk-2">JavaScript</div>
-                        <div className="sk-3">Python</div>
-                        <div className="sk-4">CSS</div>
+                        <div id="chart">
+                            <ApexCharts options={options} series={options.series} type="bar" height={300} width={500} />
+                        </div>
 
-                        <div className="overlap-group">
-                            <div className="rectangle" />
-                        </div>
-                        <div className="overlap-group2">
-                            <div className="rectangle-2" />
-                        </div>
-                        <div className="overlap-group3">
-                            <div className="rectangle-3" />
-                        </div>
-                        <div className="overlap-group4">
-                            <div className="rectangle-4" />
-                        </div>
-                        
                     </div>
                 </div>
 

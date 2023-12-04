@@ -408,8 +408,8 @@
 .commentsContainer {
     background-color: #f2f2f2; /* 예시로 회색 배경을 사용 */
     padding: 20px;
+    min-height: 500px;
     margin-top: 100px;
-    height: 500px;
     justify-content: center;
     position: relative;
     /* 추가적인 스타일링이 필요할 수 있음 */
@@ -465,10 +465,7 @@
     display: flex;
     flex-direction: column; /* 댓글들을 세로로 배치 */
     width: 88%;
-    margin-left: 100px;
-    position: absolute;
-    align-items: flex-start;
-    left: 23.5%;
+    margin-left: 400px;
 }
 
 .commentsDisplay > div {

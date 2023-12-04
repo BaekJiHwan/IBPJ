@@ -1,9 +1,18 @@
 import React, { Component, useState, useEffect } from "react";
 import '../CSS/Profile.css'
 import axios from 'axios';
+import { fetchLang } from "../components/GitHubREST";
+import ApexCharts from 'react-apexcharts';
+
+
 
 
 const Jihwan = () => {
+    const [gitResult, setGitResult] = useState(null)
+    const [data, setData] = useState({
+        labels: [],
+        datasets: [{ data: [] }],
+    });
 
     const [inputs, setInputs] = useState({
         comment: "",
@@ -17,36 +26,112 @@ const Jihwan = () => {
     };
 
     const onSubmit = async () => {
+        setComments(prevComments => [...prevComments, { content: comment }]);
+        setInputs({ comment: "" }); // 입력 필드 초기화
         try {
-            await axios.post('API_ENDPOINT', { comment });
-            setComments([...comments, comment]); // 새 댓글 추가
-            setInputs({ comment: "" }); // 입력 필드 초기화
-            fetchComments(); // 댓글 다시 불러오기
+            await axios.post(`${process.env.REACT_APP_Endpoint}/pushComment`, { comment: comment, postID: 1 });
         } catch (error) {
             console.error(error);
         }
     };
-    
+
     const fetchComments = async () => {
         try {
-            const response = await axios.get('API_ENDPOINT');
+            const response = await axios.get(`${process.env.REACT_APP_Endpoint}/pullComment?postID=1`);
             setComments(response.data);
         } catch (error) {
             console.error(error);
         }
     };
-    
+
     // 컴포넌트 마운트 시 댓글 불러오기
     useEffect(() => {
+        const fetchGit = async () => {
+            const response = await fetchLang('BaekJiHwan')
+            setGitResult(response.repoName)
+            if (response) {
+                // 객체의 키와 값을 분리하여 두 개의 배열로 만듦
+                const labels = Object.keys(response.repoLang);
+                const data = Object.values(response.repoLang);
+
+                // 데이터를 내림차순으로 정렬하고, 레이블도 동일한 순서로 정렬
+                const sortedIndices = data
+                    .map((value, index) => ({ value, index }))
+                    .sort((a, b) => b.value - a.value)
+                    .map(data => data.index);
+
+                const sortedLabels = sortedIndices.map(index => labels[index]);
+                const sortedData = sortedIndices.map(index => data[index]);
+
+                // 차트 데이터 상태 업데이트
+                setData({
+                    labels: sortedLabels,
+                    datasets: [
+                        {
+                            data: sortedData
+                        }
+                    ]
+                });
+            }
+        }
+        fetchGit();
         fetchComments();
     }, []);
-    
+
+
+
+
+
+    var options = {
+        series: [{
+            data: data.datasets[0].data
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: {
+                show: false, // 툴바 숨기기
+            }
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true,
+            }
+        },
+        colors: ['black'], // 여기에 원하는 색상 코드를 배열 형태로 추가하세요.
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: data.labels,
+            labels: {
+                show: false, // x축 레이블을 숨김
+            },
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div>
             <div className="information">
                 <div className="profile-image">
-                    <img className="image" src="image/test.jpeg" alt="Profile"/>
+                    <img className="image" src="image/Test.jpeg" alt="Profile" />
                 </div>
                 <div className="Sign">Hodo</div>
                 <div className="mbti">제 MBTI는</div>
@@ -83,32 +168,24 @@ const Jihwan = () => {
                         <div className="contents3">칼로타입 총무</div>
 
                         <div className="Project">PROJECT</div>
-                        <div className="date4">2학년 1학기</div>
-                        <div className="contents4">기초 프로젝트 1 포스기 제작</div>
-                        <div className="date5">2학년 2학기</div>
-                        <div className="contents5">기초 프로젝트 2 키오스크 제작</div>
-                        <div className="date6">3학년 1학기</div>
-                        <div className="contents6">오픈SW 프로젝트 CNFT-WITH 제작</div>
+                        {gitResult && gitResult.map((item, idx) => {
+                            return (
+                                <>
+                                    <div className="date4">{item}</div>
+                                    <div className="contents4">
+                                        <a href={`https://github.com/cookiepawn/${item}`} target="_blank" rel="noopener noreferrer">
+                                            https://github.com/cookiepawn/{item}
+                                        </a>
+                                    </div>
+                                </>
+                            )
+                        })}
 
                         <div className="Skills">SKILLS</div>
-                        <div className="sk-1">Photoshop</div>
-                        <div className="sk-2">Figma</div>
-                        <div className="sk-3">HTML</div>
-                        <div className="sk-4">CSS</div>
+                        <div id="chart">
+                            <ApexCharts options={options} series={options.series} type="bar" height={300} width={500} />
+                        </div>
 
-                        <div className="overlap-group">
-                            <div className="rectangle" />
-                        </div>
-                        <div className="overlap-group2">
-                            <div className="rectangle-2" />
-                        </div>
-                        <div className="overlap-group3">
-                            <div className="rectangle-3" />
-                        </div>
-                        <div className="overlap-group4">
-                            <div className="rectangle-4" />
-                        </div>
-                        
                     </div>
                 </div>
 
@@ -120,8 +197,8 @@ const Jihwan = () => {
                     <button type="button" onClick={onSubmit}>작성</button>
                 </div>
                 <div className="commentsDisplay">
-                    {comments.map((c, index) => (
-                        <div key={index}> 익명 : {c}</div>
+                    {comments.map((item, index) => (
+                        <div key={index}> 익명 : {item.content}</div>
                     ))}
                 </div>
             </div>

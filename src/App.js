@@ -7,6 +7,7 @@ import ChatGPT from "./pages/ChatGPT";
 import DALLE from "./pages/DALLE";
 import Moohee from "./pages/Moohee";
 import Jiyoung from "./pages/Jiyoung";
+import KakaoTalk from "./pages/KakaoTalk"
 
 function App() {
     return (
@@ -19,7 +20,7 @@ function App() {
                     <Link to="/Jiyoung" style={{ color: 'white', marginRight: '100px', textDecoration: 'none' }}>Jiyoung</Link>
                     <Link to="/ChatGPT" style={{ color: 'yellow', marginRight: '100px', textDecoration: 'none' }}>ChatGPT</Link>
                     <Link to="/DALLE" style={{ color: 'yellow', marginRight: '100px', textDecoration: 'none' }}>DALLE</Link>
-                    
+                    <Link to="/KaKaoTalk" style={{ color: 'yellow', marginRight: '100px', textDecoration: 'none' }}>Talk</Link>
                 </nav>
             </div>
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/Jiyoung" element={<Jiyoung />} />
                 <Route path="/DALLE" element={<DALLE />} />
                 <Route path="/ChatGPT" element={<ChatGPT />} />
+                <Route path="/KakaoTalk" element={<KakaoTalk />} />
             </Routes>
         </div>
     )

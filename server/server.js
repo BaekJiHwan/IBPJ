@@ -1,8 +1,15 @@
 const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
 const path = require('path');
-const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');  // mysql 모듈 로드
+const cors = require('cors');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
+
 
 //DB연동
 var db = mysql.createConnection({
@@ -19,13 +26,13 @@ db.connect();
 
 
 app.use(bodyParser.json());
-
+app.use(cors());
 
 
 
 
 // React 앱을 서비스하는 폴더 설정
-app.use(express.static(path.join(__dirname+'/../', 'build')));
+app.use(express.static(path.join(__dirname + '/../', 'build')));
 
 
 
@@ -56,14 +63,33 @@ app.get('/pullComment', (req, res) => {
 
 // 모든 요청을 React 앱으로 리디렉션
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/../', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname + '/../', 'build', 'index.html'));
+});
+
+
+
+//채팅  
+io.on('connection', (socket) => {
+    console.log('User connected');
+
+    socket.on('chat message', (message) => {
+        console.log(message)
+        io.emit('chat message', message); // 모든 클라이언트에게 메시지 브로드캐스트
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 });
 
 
 
 
+
+
+
 // 서버 시작
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT = 3000;
+server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

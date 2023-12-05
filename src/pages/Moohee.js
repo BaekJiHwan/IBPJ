@@ -29,7 +29,7 @@ const Moohee = () => {
         setComments(prevComments => [...prevComments, { content: comment }]);
         setInputs({ comment: "" }); // 입력 필드 초기화
         try {
-            await axios.post(`${process.env.REACT_APP_Endpoint}/pushComment`, { comment: comment, postID: 1 });
+            await axios.post(`${process.env.REACT_APP_Endpoint}/pushComment`, { comment: comment, postID: 3 });
         } catch (error) {
             console.error(error);
         }

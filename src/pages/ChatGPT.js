@@ -14,6 +14,9 @@ const ChatGPT = () => {
             sender: 'user'
         };
         setMessages([...messages, userMessage]);
+
+        setUserInput('');
+        
         setIsLoading(true); // 로딩 시작
 
 
@@ -33,7 +36,7 @@ const ChatGPT = () => {
             alert('응답이 없습니다')
         }
 
-        setUserInput('');
+
     };
 
     return (

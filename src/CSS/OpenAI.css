@@ -26,7 +26,7 @@ html, body {
     display: flex;
     padding: 10px;
     background-color: #ffffff;
-    height: 130px;
+    height: 100px;
     margin-bottom: 63px;
 }
 
@@ -35,6 +35,7 @@ html, body {
     padding: 10px;
     margin-right: 10px;
     border: 0;
+    font-size: 18px;
 }
 
 .chat-input input:focus {
@@ -42,11 +43,13 @@ html, body {
 }
 
 .chat-input button {
-    padding: 10px 20px;
+    padding: 20px 20px;
     background-color: #fef01b;
     color: black;
+    font-size: 18px;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
+    width: 140px;
 }
 
 .message {
@@ -54,6 +57,7 @@ html, body {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 10px;
+    font-size: 18px;
 }
 
 .message.user {

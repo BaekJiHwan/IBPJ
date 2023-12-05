@@ -3,35 +3,33 @@ import { Routes, Route, Link } from "react-router-dom"
 
 import Jihwan from "./pages/Jihwan";
 import JunChul from './pages/JunChul';
-import Counter from "./pages/Counter";
 import ChatGPT from "./pages/ChatGPT";
 import DALLE from "./pages/DALLE";
-import Input2 from "./pages/Input2";
-import List from "./pages/List";
+import Moohee from "./pages/Moohee";
+import Jiyoung from "./pages/Jiyoung";
 
 function App() {
     return (
         <div>
             <div className="Main">
                 <nav>
-                    <Link to="/" style={{ color: 'white', marginRight: '100px', marginLeft: '100px' }}>Jihwan</Link>
-                    <Link to="/JunChul" style={{ color: 'white', marginRight: '100px' }}>JunChul</Link>
-                    <Link to="/ChatGPT" style={{ color: 'white', marginRight: '100px' }}>ChatGPT</Link>
-                    <Link to="/DALLE" style={{ color: 'white', marginRight: '100px' }}>DALLE</Link>
-                    <Link to="/counter" style={{ color: 'white', marginRight: '100px' }}>Counter</Link>
-                    <Link to="/input2" style={{ color: 'white', marginRight: '100px' }}>Input2</Link>
-                    <Link to="/list" style={{ color: 'white', marginRight: '100px' }}>List</Link>
+                    <Link to="/" style={{ color: 'white', marginRight: '100px', textDecoration: 'none' }}>Jihwan</Link>
+                    <Link to="/JunChul" style={{ color: 'white', marginRight: '100px', textDecoration: 'none' }}>JunChul</Link>
+                    <Link to="/Moohee" style={{ color: 'white', marginRight: '100px', textDecoration: 'none' }}>Moohee</Link>
+                    <Link to="/Jiyoung" style={{ color: 'white', marginRight: '100px', textDecoration: 'none' }}>Jiyoung</Link>
+                    <Link to="/ChatGPT" style={{ color: 'yellow', marginRight: '100px', textDecoration: 'none' }}>ChatGPT</Link>
+                    <Link to="/DALLE" style={{ color: 'yellow', marginRight: '100px', textDecoration: 'none' }}>DALLE</Link>
+                    
                 </nav>
             </div>
 
             <Routes>
                 <Route path="/" element={<Jihwan />} />
                 <Route path="/JunChul" element={<JunChul />} />
+                <Route path="/Moohee" element={<Moohee />} />
+                <Route path="/Jiyoung" element={<Jiyoung />} />
                 <Route path="/DALLE" element={<DALLE />} />
-                <Route path="/counter" element={<Counter />} />
                 <Route path="/ChatGPT" element={<ChatGPT />} />
-                <Route path="/input2" element={<Input2 />} />
-                <Route path="/list" element={<List />} />
             </Routes>
         </div>
     )

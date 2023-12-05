@@ -173,8 +173,8 @@ const Jihwan = () => {
                                 <>
                                     <div className="date4">{item}</div>
                                     <div className="contents4">
-                                        <a href={`https://github.com/cookiepawn/${item}`} target="_blank" rel="noopener noreferrer">
-                                            https://github.com/cookiepawn/{item}
+                                        <a href={`https://github.com/BaekJiHwan/${item}`} target="_blank" rel="noopener noreferrer">
+                                            https://github.com/BaekJiHwan/{item}
                                         </a>
                                     </div>
                                 </>

@@ -3,39 +3,42 @@ import io from 'socket.io-client';
 import '../CSS/OpenAI.css'
 
 const KakaoTalk = () => {
+    const [socket, setSocket] = useState(null);
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
-    const socket = io.connect(process.env.REACT_APP_Endpoint);
+    
+
 
 
     useEffect(() => {
-        console.log(socket)
+        const newSocket = io.connect(process.env.REACT_APP_Endpoint);
+        setSocket(newSocket);
         // 소켓 이벤트 리스너 추가
-        socket.on('chat message', (message) => {
+        newSocket.on('chat message', (message) => {
             const aiMessage = {
                 text: message,
                 sender: 'ai'
             };
-            setMessages([...messages, aiMessage]);
+            setMessages((prevMessages) => [...prevMessages, aiMessage]);
         });
-    
-        return () => {
-            socket.off('chat message'); // 컴포넌트 언마운트 시 이벤트 리스너 제거
-        };
-    }, [messages, socket]); // 'socket'을 의존성 배열에 추가
+
+        return () => newSocket.close();
+    }, []); // 'socket'을 의존성 배열에 추가
 
 
     const handleSend = async () => {
-        const userMessage = {
-            text: userInput,
-            sender: 'user'
-        };
-        setMessages([...messages, userMessage]);
+        if (socket) {
+            const userMessage = {
+                text: userInput,
+                sender: 'user'
+            };
+            setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-        // 소켓을 통해 메시지 서버로 보내기
-        socket.emit('chat message', userInput);
+            // 소켓을 통해 메시지 서버로 보내기
+            socket.emit('chat message', userInput);
 
-        setUserInput('');
+            setUserInput('');    
+        }
     };
 
 

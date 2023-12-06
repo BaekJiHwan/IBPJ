@@ -1,6 +1,5 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');  // mysql 모듈 로드
@@ -8,7 +7,12 @@ const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: 'http://192.168.0.15',
+        methods: ['GET', 'POST']
+    }
+});
 
 
 //DB연동
@@ -26,7 +30,10 @@ db.connect();
 
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: process.env.REACT_APP_Endpoint, // 클라이언트 주소
+    methods: ['GET', 'POST'] // 허용할 HTTP 메소드
+}));
 
 
 
@@ -68,17 +75,18 @@ app.get('*', (req, res) => {
 
 
 
-//채팅  
 io.on('connection', (socket) => {
-    console.log('User connected');
+    console.log(`User connected with socket.id: ${socket.id}`);
 
     socket.on('chat message', (message) => {
-        console.log(message)
-        io.emit('chat message', message); // 모든 클라이언트에게 메시지 브로드캐스트
+        console.log(message);
+
+        // 모든 클라이언트에게 메시지 브로드캐스트
+        socket.boradcast.emit('chat message', message);
     });
 
     socket.on('disconnect', () => {
-        console.log('User disconnected');
+        console.log(`User with socket.id ${socket.id} disconnected`);
     });
 });
 
